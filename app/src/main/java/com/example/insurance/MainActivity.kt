@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity(),
     AdapterView.OnItemSelectedListener {
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(),
         val position = spinnerAge.selectedItemPosition
         val age = spinnerAge.getChildAt(position)
         val gender = radioGroupGender.checkedRadioButtonId
+        val symbol = Currency.getInstance(Locale.getDefault()).symbol
         var basic_premium: Int = 0
 
         basic_premium = when(position) {
@@ -64,7 +66,9 @@ class MainActivity : AppCompatActivity(),
             }
         }
 
-        textViewPremium.text = String.format("%s %d",getString(R.string))
+        textViewPremium.text = String.format("%s %s %d",getString(R.string.insurance_premium),
+            symbol,
+            basic_premium)
 
     }
 }
